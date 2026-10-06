@@ -16,9 +16,7 @@
 
 <p align="center">
   <a href="https://github.com/Little-Trotter/invoice"><strong>Invoice Repository</strong></a> &bull;
-  <a href="https://little-trotter.github.io/"><strong>Architecture Documentation (arc42)</strong></a> &bull;
-  <a href="https://little-trotter.github.io/user-guide.html"><strong>Praxishandbuch</strong></a> &bull;
-  <a href="https://little-trotter.github.io/logs.html"><strong>Release-Log</strong></a>
+  <a href="https://little-trotter.github.io/"><strong>Architecture Documentation (arc42)</strong></a>
 </p>
 
 ---

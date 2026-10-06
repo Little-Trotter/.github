@@ -16,15 +16,13 @@
 
 <p align="center">
   <a href="https://github.com/Little-Trotter/invoice"><strong>Invoice Repository</strong></a> &bull;
-  <a href="https://little-trotter.github.io/"><strong>Architecture Documentation (arc42)</strong></a> &bull;
-  <a href="https://little-trotter.github.io/user-guide.html"><strong>Praxishandbuch</strong></a> &bull;
-  <a href="https://little-trotter.github.io/logs.html"><strong>Release-Log</strong></a>
+  <a href="https://little-trotter.github.io/"><strong>Architecture Documentation (arc42)</strong></a>
 </p>
 
 ---
 
-Little Trotter turns an invoice into everything German and EU law expects of it, in one click:
-a validated **XRechnung** or **Factur-X** file (EN 16931), a **PDF/A-3** document with the XML
+Little Trotter turns quotations and invoices into everything German and EU law expects of them, in one click:
+formal quotation authoring (*Angebotswesen*), a validated **XRechnung** or **Factur-X** file (EN 16931), a **PDF/A-3** document with the XML
 embedded, a KoSIT validation report, and a signed archive package — with a tamper-evident
 audit trail underneath. Built for freelancers, engineering offices and small and medium-sized companies.
 
@@ -36,6 +34,7 @@ audit trail underneath. Built for freelancers, engineering offices and small and
 
 | You do | Little Trotter does |
 |---|---|
+| **Write the quote** (*Angebotswesen / Angebotsschreibung*) | Formal quotation authoring, itemized scope, revisions, and one-click conversion directly into invoices |
 | **Write the invoice** (products, services, business trips) | Applies the right VAT rule, reverse charge across the EU, per-diem and mileage rates, and checks the data before you can send |
 | **Press Send** | Assigns the number, freezes the document, generates PDF/A-3 + XRechnung/Factur-X **exactly once**, validates it with the official KoSIT validator, seals it with a checksum and a signed archive |
 | **Attach receipts** | Hotel bills, tickets, delivery notes go into the invoice's annex and into the e-invoice as attachments — within a size budget the recipient's mail server will accept |
@@ -51,6 +50,7 @@ audit trail underneath. Built for freelancers, engineering offices and small and
 - **Audit-proof audit trail.** Every status transition and document seal is recorded with tamper-evident cryptographic hashes in an append-only journal.
 
 ### Invoicing the way your customers demand it
+- **From quote to invoice in one click.** Formal quotation authoring (*Angebotswesen / Angebotsschreibung*), itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices.
 - **One invoice, many rulebooks.** Handles different B2B profiles and requirements from authorities (`BT-10` Leitweg-ID) and enterprise customers (`BT-13` purchase order, `BT-11` project ref).
 - **Your articles, their numbers.** Supports customer article references for your internal items.
 - **Receipts travel with the invoice.** Manages multiple invoice receipts (materials, working time, travel costs) with automatic upload reduction to protect mail servers.
