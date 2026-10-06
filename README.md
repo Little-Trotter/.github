@@ -68,19 +68,30 @@ audit trail underneath. Built for freelancers, engineering offices and small and
 
 ```mermaid
 flowchart LR
-    U[Browser] --> A[Web app<br/>Kotlin · Quarkus · Vaadin]
-    A --> P[(PostgreSQL<br/>journal · triggers)]
-    A -- job --> N[NATS JetStream]
-    N --> X[Document engine<br/>PDF/A-3 · XRechnung · Factur-X · KoSIT]
+    U[Browser] --> Q[Quotation Engine<br/>kotlin-quote]
+    U --> A[Invoice Web App<br/>kotlin-invoice]
+
+    Q -- QuoteAccepted --> N[NATS JetStream]
+    N -- create invoice --> A
+
+    A -- dispatch job --> N
+    N --> E[E-Mail Dispatch<br/>kotlin-email]
+
+    A --> P[(PostgreSQL<br/>invoices · quotes · journal)]
+    Q --> P
+
+    A -- render job --> N
+    Q -- render job --> N
+    N --> X[Document engine<br/>PDF/A-3 · XRechnung · Factur-X · UBL]
     X --> S[(S3 object store<br/>documents · receipts · archives)]
-    X -- result --> N --> A
-    W[Job worker<br/>recalculation · sweeps] --> P
+    X -- result --> N
+    W[Job worker<br/>sweeps · recalculation] --> P
 ```
 
-- **Kotlin on Quarkus**, Vaadin Flow UI, Hibernate/Panache, Flyway — a hexagonal, domain-driven core with explicit ports.
-- **Documents** via Typst and Apache PDFBox, Mustang (CII), the embedded KoSIT validator and veraPDF; **exports** via Apache POI.
+- **Quotation Engine** via dedicated SCS (`kotlin-quote`) with UBL Quotation XML synthesis and one-click conversion directly into invoices via NATS JetStream.
+- **Invoice Core** on Kotlin & Quarkus, Vaadin Flow UI, Hibernate/Panache, Flyway — a hexagonal, domain-driven core with explicit ports.
 - **E-Mail Dispatch** via dedicated SCS (`kotlin-email`) with Ed25519-signed archive packages and NATS JetStream integration.
-- **Quotation Engine** via dedicated module (`kotlin-quote`) with UBL Quotation XML synthesis and one-click conversion to invoices.
+- **Documents** via Typst and Apache PDFBox, Mustang (CII), the embedded KoSIT validator and veraPDF; **exports** via Apache POI.
 
 ---
 
