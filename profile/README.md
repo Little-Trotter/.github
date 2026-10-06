@@ -142,7 +142,7 @@ Craftsmen, freelancers, and small businesses face identical compliance challenge
 #### Black Forest Fox (*Schwarzwälder Fuchs*) Release
 *In Entwicklung (Beginn) — Planned for Q3/Q4 2027 (indicative)*
 
-- 🔄 Quotation Engine (*Angebotswesen / Angebotsschreibung* — begonnen / in Umsetzung): Formal quotation authoring, itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices
+- ✅ Quotation Engine (*Angebotswesen / Angebotsschreibung*): Formal quotation authoring, itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices
 - 🔄 System Hardening & Revision Integrity: Tamper-resistant locking of finalized quotes, immutable revision history, and unbroken sequence numbering
 - 🔄 Rigorous Testing & Data Consistency: Comprehensive test suites for complex quotation structures, tiered discounts, and unit conversions
 - 🔄 Smooth User Operations: Quick filters for open quotations, expiration notices, and seamless local multi-user workflows
