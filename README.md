@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <strong>E-invoicing for small businesses that has to stand up to an audit — and is still a pleasure to use.</strong>
+  <strong>E-invoicing for small and medium businesses.</strong>
 </p>
 
 <p align="center">
@@ -46,8 +46,8 @@ audit trail underneath. Built for freelancers, engineering offices and small and
 ## Why it feels different
 
 ### Compliance, built in
-- **Built for the trades and small firms.** Designed for craftsmen and small and medium-sized companies. Meets key European and German standards (§ 14 UStG, GoBD, EN 16931). Supports XRechnung 3.0.2, PDF/A-3, semantic model, and KoSIT validation.
-- **Audit-proof audit trail.** Every status transition and document seal is recorded with tamper-evident cryptographic hashes in an append-only journal.
+- **Built for the trades and small firms.** Designed for craftsmen and small and medium-sized companies. Meets key European and German standards (GoBD, EN 16931). Supports XRechnung 3.0.2, PDF/A-3, semantic model, and KoSIT validation.
+- **Tamper-evident audit trail.** Every status transition and document seal is recorded with cryptographic hashes in an append-only journal.
 
 ### Invoicing the way your customers demand it
 - **From quote to invoice in one click.** Formal quotation authoring (*Angebotswesen / Angebotsschreibung*), itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices.
@@ -116,7 +116,7 @@ Little Trotter is rooted in the cooperative philosophy of **Friedrich Wilhelm Ra
 > *"Was dem Einzelnen nicht möglich ist, das vermögen viele."*  
 > *(What is impossible for one alone, many can achieve.)*
 
-Craftsmen, freelancers, and small businesses face identical compliance challenges (§ 14 UStG, GoBD, mandatory e-invoicing) and risk becoming locked into high-cost, proprietary cloud monopolies. Open source serves as a modern cooperative: shared, transparent, durable infrastructure providing independence and digital sovereignty.
+Craftsmen, freelancers, and small businesses face identical compliance challenges (GoBD, mandatory e-invoicing) and risk becoming locked into high-cost, proprietary cloud monopolies. Open source serves as a modern cooperative: shared, transparent, durable infrastructure providing independence and digital sovereignty.
 
 ### Release Roadmap
 
@@ -142,7 +142,7 @@ Craftsmen, freelancers, and small businesses face identical compliance challenge
 #### Black Forest Fox (*Schwarzwälder Fuchs*) Release
 *In Entwicklung (Beginn) — Planned for Q3/Q4 2027 (indicative)*
 
-- 🔄 Quotation Engine (*Angebotswesen / Angebotsschreibung* — begonnen / in Umsetzung): Formal quotation authoring, itemized scope, revisions, and one-click conversion from accepted quotes directly into audit-proof invoices
+- 🔄 Quotation Engine (*Angebotswesen / Angebotsschreibung* — begonnen / in Umsetzung): Formal quotation authoring, itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices
 - 🔄 System Hardening & Revision Integrity: Tamper-resistant locking of finalized quotes, immutable revision history, and unbroken sequence numbering
 - 🔄 Rigorous Testing & Data Consistency: Comprehensive test suites for complex quotation structures, tiered discounts, and unit conversions
 - 🔄 Smooth User Operations: Quick filters for open quotations, expiration notices, and seamless local multi-user workflows
