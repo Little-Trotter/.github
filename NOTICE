@@ -1,10 +1,16 @@
-This project is licensed under the Apache License, Version 2.0.
+Little Trotter
+Copyright (c) 2026 Stefan Zils and contributors (https://github.com/little-trotter)
 
-The overall concept, design, layout and core idea of this repository are provided with an attribution requirement under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
-License details: https://creativecommons.org/licenses/by/4.0/
- 
-When this concept or layout is reused in other applications or products, including commercial use, a clearly visible attribution to the original project must be maintained.
-  "Core idea derived from the LittleTrotter X-Rechnung project (https://github.com/little-trotter/invoice) under CC BY 4.0."
+This product includes software developed by Little Trotter
+under the Apache License 2.0, and design, concept, and documentation assets
+licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+ATTRIBUTION REQUIREMENT:
+Any use, reproduction, redistribution, modification, hosting, or embedding
+of this software, its concept, or derivative works—in source, binary, hosted,
+or documented form, including commercial use—must prominently display attribution to:
+"Little Trotter (https://github.com/little-trotter)"
+and retain this NOTICE file, copyright notices, and license terms.
 
 ---
 

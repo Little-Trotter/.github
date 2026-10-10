@@ -38,7 +38,7 @@ Little Trotter is a modular open-source software suite designed for craft busine
 
 Mandatory e-invoicing forces independent businesses into recurring subscription costs and proprietary cloud monopolies. Little Trotter applies the cooperative self-help principle to business infrastructure:
 
-1. **Zero Recurring Costs:** Open source under the Apache 2.0 license. No seat licensing, no tier restrictions, no fees per sent invoice.
+1. **Zero Recurring Costs:** Dual licensed under Apache 2.0 (software) and CC BY 4.0 (concepts & design). No seat licensing, no tier restrictions, no fees per sent invoice.
 2. **Local-First Data Ownership:** All customer master data, quotations, invoices, and audit logs remain on your local hardware. No automated external data transmission.
 3. **Low-Power Hardware:** Optimized along Green IT guidelines to run smoothly on silent, entry-level office mini PCs with automated overnight standby.
 
@@ -67,5 +67,7 @@ Named after traditional working and draft horse breeds (*Zugpferde*, inspired by
 ## License & Attribution
 
 - **Software:** [Apache License 2.0](https://github.com/Little-Trotter/invoice/blob/main/LICENSE)
-- **Concept & Documentation:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — credit *Little Trotter (https://github.com/little-trotter)*
+- **Concept, Design & Documentation:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — credit *Little Trotter (https://github.com/little-trotter)*
+- **Mandatory Attribution:** Any distribution, fork, deployment, or derivative work must retain the [`NOTICE`](https://github.com/Little-Trotter/invoice/blob/main/NOTICE) file and prominently credit `Little Trotter (https://github.com/little-trotter)`.
+- **Disclaimer:** All software and materials are provided strictly "AS IS", without warranty of any kind.
 - **Project Initiator:** Stefan Zils ([Eifel42](https://github.com/eifel42))
