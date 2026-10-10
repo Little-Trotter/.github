@@ -1,161 +1,71 @@
 <!--
-  Project: Little Trotter X-Invoice
+  Little Trotter Organization Profile
   Copyright (c) 2026 Eifel42 Stefan Zils
-  See LICENSE and NOTICE for license terms.
+  Licensed under Apache License 2.0 and CC BY 4.0
 -->
 
 # Little Trotter
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Little-Trotter/.github/main/profile/little-trotter-horse.png" alt="Little Trotter logo: stylised horse" width="300" />
+  <img src="https://raw.githubusercontent.com/Little-Trotter/.github/main/profile/little-trotter-horse.png" alt="Little Trotter logo: stylised horse" width="280" />
 </p>
 
-<p align="center">
-  <strong>E-invoicing for small and medium businesses.</strong>
-</p>
+**Sovereign E-Invoicing & Quotation Authoring for Small and Medium Businesses.**
 
-<p align="center">
-  <a href="https://github.com/Little-Trotter/invoice"><strong>Invoice Repository</strong></a> &bull;
-  <a href="https://little-trotter.github.io/"><strong>Architecture Documentation (arc42)</strong></a>
-</p>
+Little Trotter is a modular open-source software suite designed for craft businesses, engineering consultancies, freelancers, and small to medium-sized enterprises (SMEs). It combines full regulatory compliance under European standards (EN 16931) with complete local data sovereignty (*Local-First*) — completely free of per-seat licenses, vendor lock-in, or third-party cloud fees.
 
 ---
 
-Little Trotter turns quotations and invoices into everything German and EU law expects of them, in one click:
-formal quotation authoring (*Angebotswesen*), a validated **XRechnung** or **Factur-X** file (EN 16931), a **PDF/A-3** document with the XML
-embedded, a KoSIT validation report, and a signed archive package — with a tamper-evident
-audit trail underneath. Built for freelancers, engineering offices and small and medium-sized companies.
+## Business Capabilities at a Glance
 
-> **Beta**: Little Trotter is under active development and provided as-is. Use it to evaluate, test and shape the product.
-
----
-
-## 30-second tour
-
-| You do | Little Trotter does |
-|---|---|
-| **Write the quote** (*Angebotswesen / Angebotsschreibung*) | Formal quotation authoring, itemized scope, revisions, and one-click conversion directly into invoices |
-| **Write the invoice** (products, services, business trips) | Applies the right VAT rule, reverse charge across the EU, per-diem and mileage rates, and checks the data before you can send |
-| **Press Send** | Assigns the number, freezes the document, generates PDF/A-3 + XRechnung/Factur-X **exactly once**, validates it with the official KoSIT validator, seals it with a checksum and a signed archive |
-| **Attach receipts** | Hotel bills, tickets, delivery notes go into the invoice's annex and into the e-invoice as attachments — within a size budget the recipient's mail server will accept |
-| **Cancel** | A proper storno document (type 384) is born beside the original; nothing is ever overwritten or deleted |
-| **Hand over to the tax advisor** | One Excel workbook per invoice or per period: header, positions, change journal — typed cells, control formulas that recompute the totals, a cover sheet with a GDPR notice |
+- **Seamless Workflow (Quote to Invoice):** Full quotation lifecycle authoring (*Angebotswesen*), itemized scope tracking, and one-click conversion of accepted quotes directly into invoice drafts without media breaks.
+- **Compliance by Architecture:** Native generation of validated **XRechnung 3.0.x** and **Factur-X / ZUGFeRD 2.x** files embedded in archival **DIN 5008 PDF/A-3** containers, pre-validated against official KoSIT Schematron rulebooks.
+- **Engineered for Trade & B2B Realities:**
+  - **Consumer Protections (Crafts Profile):** Automated statutory notices on B2C invoices (two-year retention requirement on property work, itemized separation of labor, machinery, and travel expenses).
+  - **Enterprise Buyer References:** Flexible support for routing credentials (Buyer Reference / Leitweg-ID `BT-10`, Purchase Order `BT-13`, Project Reference `BT-11`).
+  - **Cross-Border Tax Support:** Multi-jurisdiction VAT registrations (e.g., dual DE and LU tax IDs) and automated EU intra-community reverse charge processing.
+- **Receipt Pool & Travel Expenses:** Centralized attachment repository with SHA-256 duplicate detection and automatic size-budget caps to prevent email server rejections.
+- **Audit-Compliant Corrections:** Strict immutability; corrections produce formal cancellation documents (type 384) alongside the original. Zero in-place overwrites or record deletions.
+- **Tax Advisor Handover:** One-click Excel workbooks per invoice or period with strongly typed cells, dynamic control formulas for internal reconciliations, and journal audit sheets.
 
 ---
 
-## Why it feels different
-
-### Compliance, built in
-- **Built for the trades and small firms.** Designed for craftsmen and small and medium-sized companies. Meets key European and German standards (GoBD, EN 16931). Supports XRechnung 3.0.2, PDF/A-3, semantic model, and KoSIT validation.
-- **Tamper-evident audit trail.** Every status transition and document seal is recorded with cryptographic hashes in an append-only journal.
-
-### Invoicing the way your customers demand it
-- **From quote to invoice in one click.** Formal quotation authoring (*Angebotswesen / Angebotsschreibung*), itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices.
-- **One invoice, many rulebooks.** Handles different B2B profiles and requirements from authorities (`BT-10` Leitweg-ID) and enterprise customers (`BT-13` purchase order, `BT-11` project ref).
-- **Your articles, their numbers.** Supports customer article references for your internal items.
-- **Receipts travel with the invoice.** Manages multiple invoice receipts (materials, working time, travel costs) with automatic upload reduction to protect mail servers.
-- **Cross-border VAT.** Handles multiple European VAT registrations (e.g. DE and LU VAT IDs) and intra-community reverse charge rules.
-
-### Yours to run, wherever you like
-- **Open, auditable, yours.** Open, auditable source code — freely available, no per-seat licensing, no vendor lock-in. Full digital sovereignty by design.
-- **Ergonomics is a design goal.** A calm, keyboard-friendly interface (Vaadin Flow), German by default with international options.
-- **Runs on a mini PC.** Designed along Green-IT principles: runs smoothly on quiet, entry-level office mini PCs with optional overnight sleep mode.
-- **Local storage first.** RustFS provides local, S3-compatible object storage under your direct physical control.
-
----
-
-## Under the hood
-
-```mermaid
-flowchart LR
-    U[Browser] --> Q[Quotation Engine<br/>kotlin-quote]
-    U --> A[Invoice Web App<br/>kotlin-invoice]
-
-    Q -- QuoteAccepted --> N[NATS JetStream]
-    N -- create invoice --> A
-
-    A -- dispatch job --> N
-    N --> E[E-Mail Dispatch<br/>kotlin-email]
-
-    A --> P[(PostgreSQL<br/>invoices · quotes · journal)]
-    Q --> P
-
-    A -- render job --> N
-    Q -- render job --> N
-    N --> X[Document engine<br/>PDF/A-3 · XRechnung · Factur-X · UBL]
-    X --> S[(S3 object store<br/>documents · receipts · archives)]
-    X -- result --> N
-    W[Job worker<br/>sweeps · recalculation] --> P
-```
-
-- **Quotation Engine** via dedicated SCS (`kotlin-quote`) with UBL Quotation XML synthesis and one-click conversion directly into invoices via NATS JetStream.
-- **Invoice Core** on Kotlin & Quarkus, Vaadin Flow UI, Hibernate/Panache, Flyway — a hexagonal, domain-driven core with explicit ports.
-- **E-Mail Dispatch** via dedicated SCS (`kotlin-email`) with Ed25519-signed archive packages and NATS JetStream integration.
-- **Documents** via Typst and Apache PDFBox, Mustang (CII), the embedded KoSIT validator and veraPDF; **exports** via Apache POI.
-
----
-
-## Quality you can check
-
-| Gate | What it guarantees |
-|---|---|
-| **Four test layers** | Unit tests with mocked third parties · integration tests against real PostgreSQL, NATS and S3 in Testcontainers · cross-module end-to-end tests through the real document pipeline · browser tests against the running stack |
-| **Coverage gate** | 90 % lines and 90 % branches on the aggregate report of a full `make test` — never skipped, never lowered |
-| **Static analysis** | ktlint, detekt (ratchet baseline), sqlfluff for migrations, format linters for configs, Qodana at zero errors |
-| **Supply chain** | Gitleaks pre-commit, Trivy image scan, OWASP dependency check, CycloneDX SBOM per image |
-| **Conformance** | veraPDF PDF/A-3 conformance suite, KoSIT XRechnung scenarios, ZUGFeRD reference examples |
-
----
-
-## Roadmap & Philosophy
-
-### Open Source as Cooperative Self-Help (The Raiffeisen Principle)
-
-Little Trotter is rooted in the cooperative philosophy of **Friedrich Wilhelm Raiffeisen**:
+## Digital Sovereignty & The Cooperative Principle
 
 > *"Was dem Einzelnen nicht möglich ist, das vermögen viele."*  
-> *(What is impossible for one alone, many can achieve.)*
+> *(What is impossible for one alone, many can achieve.)*  
+> — **Friedrich Wilhelm Raiffeisen**
 
-Craftsmen, freelancers, and small businesses face identical compliance challenges (GoBD, mandatory e-invoicing) and risk becoming locked into high-cost, proprietary cloud monopolies. Open source serves as a modern cooperative: shared, transparent, durable infrastructure providing independence and digital sovereignty.
+Mandatory e-invoicing forces independent businesses into recurring subscription costs and proprietary cloud monopolies. Little Trotter applies the cooperative self-help principle to business infrastructure:
 
-### Release Roadmap
-
-#### Haflinger Release
-*Active baseline — Planned for Q2/Q3 2027 (indicative)*
-
-- ✅ Invoicing lifecycle, e-invoice generation, validation, archive packages, audit journal
-- ✅ Receipts with budget rules, storno documents (type 384), Excel export with control formulas
-- ✅ Domain-Driven Design (DDD) & Hexagonal Architecture: Clean decoupling of domain core, application use cases, and infrastructure ports
-- ✅ Operational Efficiency & Flexibility: Minimal footprint (GreenIT guidelines) for 24/7 or overnight shutdown on a mini-server
-- ✅ Business trips: Consolidated entry with itemized components, per diems, and dedicated workbook
-- 🔧 Production Hardening: Monitoring, logging, performance tuning, and audit security
-
-#### Andalusian Release
-*Active development — Planned for Q3 2027 (indicative)*
-
-- ✅ B2B Invoice Emails: Autonomous email dispatch via dedicated SCS (`kotlin-email`), integrated with IDW PS 880-compliant archive interfaces
-- ✅ Postfach & Envelope Preview: Interactive compose layout, recipient inspection, and send bar
-- ✅ Email Templates: Standardized B2B invoice email templates with typed placeholders
-- 🔧 System Hardening & Transport Security: Encrypted SMTP/TLS transfer, authentication pipelines (SPF, DKIM, DMARC), and robust bounce handling
-- 🔧 Automated Delivery Testing: End-to-end integration tests of mail and document dispatch against Testcontainers mail servers
-
-#### Black Forest Fox (*Schwarzwälder Fuchs*) Release
-*In Entwicklung (Beginn) — Planned for Q3/Q4 2027 (indicative)*
-
-- ✅ Quotation Engine (*Angebotswesen / Angebotsschreibung*): Formal quotation authoring, itemized scope, revisions, and one-click conversion from accepted quotes directly into invoices
-- 🔄 System Hardening & Revision Integrity: Tamper-resistant locking of finalized quotes, immutable revision history, and unbroken sequence numbering
-- 🔄 Rigorous Testing & Data Consistency: Comprehensive test suites for complex quotation structures, tiered discounts, and unit conversions
-- 🔄 Smooth User Operations: Quick filters for open quotations, expiration notices, and seamless local multi-user workflows
-
-#### Percheron Release
-*On demand — Dependent on community need*
-
-- 💡 [Factur-X Integration](https://fnfe-mpe.org/factur-x/): Cross-border B2B invoicing profiles for France, Luxembourg, and Belgium — scheduled strictly upon demand from the user community
+1. **Zero Recurring Costs:** Open source under the Apache 2.0 license. No seat licensing, no tier restrictions, no fees per sent invoice.
+2. **Local-First Data Ownership:** All customer master data, quotations, invoices, and audit logs remain on your local hardware. No automated external data transmission.
+3. **Low-Power Hardware:** Optimized along Green IT guidelines to run smoothly on silent, entry-level office mini PCs with automated overnight standby.
 
 ---
 
-## License and attribution
+## The Little Trotter Ecosystem
 
-- Software: [Apache License 2.0](LICENSE).
-- Concept and design: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) &mdash; credit *Little Trotter (https://github.com/little-trotter)*.
-- Founded and maintained by **Stefan Zils (Eifel42)**.
+| Repository | Purpose |
+|---|---|
+| [**`little-trotter/invoice`**](https://github.com/Little-Trotter/invoice) | **Core System:** E-Invoicing Engine, Quotation Module (`kotlin-quote`), B2B Email Dispatch (`kotlin-email`), Typst Document Renderer (`kotlin-xpdf`), Docker Compose quickstart, and comprehensive [arc42 architecture documentation](https://github.com/Little-Trotter/invoice/tree/main/arc42-docs). |
+| [**`little-trotter/little-trotter-admin-tools`**](https://github.com/Little-Trotter/little-trotter-admin-tools) | **Operations & QA:** Playwright browser test suites, automated verification pipelines, and deployment tooling (scheduled for public release Q4/2027). |
+
+---
+
+## Release Lines (Focus & Business Value)
+
+Named after traditional working and draft horse breeds (*Zugpferde*, inspired by ZUGFeRD):
+
+- 🐴 **Haflinger (Core Invoicing Baseline):** Robust, sure-footed working foundation. Compliant EN 16931 invoicing, pre-dispatch validation, SHA-256 receipt deduplication, and database audit trail.
+- 🐴 **Andalusian (B2B Document Dispatch):** Agile courier horse. Secure, tamper-evident invoice transmission (Ed25519 signatures, SMTP/TLS via NATS JetStream) to reduce Days Sales Outstanding (DSO) without transaction network tolls.
+- 🐴 **Black Forest Fox (*Schwarzwälder Fuchs*, Quotation Engine):** Tenacious cold-blood breed for steep terrain; a personal tribute to ancestors in forestry and slate hauling. Drives sales efficiency through UBL Quotation XML synthesis and one-click invoice generation.
+- 🐴 **Percheron (International Profiles & Scale):** Powerful heavy draft breed. Cross-border Factur-X profiles (France, Luxembourg, Belgium) and multi-tenancy for larger enterprises.
+
+---
+
+## License & Attribution
+
+- **Software:** [Apache License 2.0](https://github.com/Little-Trotter/invoice/blob/main/LICENSE)
+- **Concept & Documentation:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — credit *Little Trotter (https://github.com/little-trotter)*
+- **Project Initiator:** Stefan Zils ([Eifel42](https://github.com/eifel42))
